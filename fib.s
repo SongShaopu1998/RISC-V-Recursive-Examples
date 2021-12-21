@@ -39,20 +39,24 @@ else:
     # and we also need to save the current result fib(n - 1)
     # t0 is n
     lw t0, 4(sp)
-    # a0 stores the current result
+    # a0 stores the current result----fib(n - 1)
     sw a0, 4(sp)
+    
     # n - 2
     addi a0, t0, -2
     # call fib(n - 2)
     jal fib
-    # fib(n - 1) + fib(n - 2)
+    
     # t0 is fib(n - 1)
     lw t0, 4(sp)
     # restore ra
     lw ra, 0(sp)
     addi sp, sp, 8
+    
     # result in a0
+    # fib(n - 1) + fib(n - 2)
     add a0, t0, a0
+    
     # return to the caller
     jr ra
     
